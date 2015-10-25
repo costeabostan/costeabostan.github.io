@@ -10,8 +10,8 @@
   <meta name="description" content="Why do you need this dialog box ? ">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/android/tutorials/2015/10/09/welcome-to-jekyll.html">
-  <link rel="alternate" type="application/rss+xml" title="Costea's Blog about Java development" href="http://yourdomain.com/feed.xml" />
+  <link rel="canonical" href="http://costeabostan.github.io//android/tutorials/2015/10/09/welcome-to-jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="Costea's Blog about Java development" href="http://costeabostan.github.io//feed.xml" />
 </head>
 
 
@@ -94,7 +94,150 @@
   <li>Add the necessary strings for popup in string.xml file</li>
 </ul>
 
-<p>To be continued shortly technical problems…</p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;rate_dialog_title&quot;</span><span class="nt">&gt;</span>Do you like application?<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;rate_dialog_ok&quot;</span><span class="nt">&gt;</span>Rate Us<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;rate_dialog_no&quot;</span><span class="nt">&gt;</span>No, Thanks<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;rate_dialog_neutral&quot;</span><span class="nt">&gt;</span>Maybe Later<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">&quot;rate_dialog_message&quot;</span><span class="nt">&gt;</span>&quot;Please rate this app by selecting the stars. Thank you!&quot;<span class="nt">&lt;/string&gt;</span></code></pre></div>
+
+<ul>
+  <li>Create a class named <i> RateAppDialogFragment </i>
+First add all the necessary static variables</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">//fragment TAG
+public static final String TAG = &quot;RateAppDialogFragment&quot;;
+public static final String RATE_APP = &quot;rate_app&quot;;
+public static final String DO_NOT_SHOW_AGAIN_TAG = &quot;do_not_show_again&quot;;
+
+public static final String LAUNCH_CODE_TAG = &quot;launch_count&quot;;
+public static final String DATE_FIRST_LAUNCH_TAG = &quot;date_first_launch&quot;;
+public static final int MIN_RATE_STAR = 4;
+
+//Add 0 to start on the first day of installation
+public static final int DAYS_UNTIL_PROMPT = 5;
+public static final int LUNCH_UNTIL_PROMPT = 5;</code></pre></div>
+
+<p>Then the most important part is the static method used to save in the system preferences lunch count and time passed since the application installation, the code is simple to understand and there is no need for explanation:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">showRateUs</span><span class="o">(</span><span class="n">Application</span> <span class="n">application</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">SharedPreferences</span> <span class="n">sharedPreferences</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="na">getSharedPreferences</span><span class="o">(</span><span class="n">RATE_APP</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">sharedPreferences</span><span class="o">==</span><span class="kc">null</span> <span class="o">||</span> <span class="n">sharedPreferences</span><span class="o">.</span><span class="na">getBoolean</span><span class="o">(</span><span class="n">DO_NOT_SHOW_AGAIN_TAG</span><span class="o">,</span> <span class="kc">false</span><span class="o">)){</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">SharedPreferences</span><span class="o">.</span><span class="na">Editor</span> <span class="n">editor</span> <span class="o">=</span> <span class="n">sharedPreferences</span><span class="o">.</span><span class="na">edit</span><span class="o">();</span>
+    <span class="kt">long</span> <span class="n">launchCount</span> <span class="o">=</span> <span class="n">sharedPreferences</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">LAUNCH_CODE_TAG</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="n">editor</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">LAUNCH_CODE_TAG</span><span class="o">,</span> <span class="n">launchCount</span><span class="o">);</span>
+    <span class="n">Long</span> <span class="n">dateFirstLaunch</span> <span class="o">=</span> <span class="n">sharedPreferences</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">DATE_FIRST_LAUNCH_TAG</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">dateFirstLaunch</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">dateFirstLaunch</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="n">editor</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">DATE_FIRST_LAUNCH_TAG</span><span class="o">,</span> <span class="n">dateFirstLaunch</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">editor</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">launchCount</span> <span class="o">&gt;=</span> <span class="n">LUNCH_UNTIL_PROMPT</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">dateFirstLaunch</span> <span class="o">+</span> <span class="o">(</span><span class="n">DAYS_UNTIL_PROMPT</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">)){</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Of course there is also need to add the layout <i>rate_app_dialog.xml</i> that was just created
+This code sample does this thing also it contains the logic in case users whats to give bad reviews:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@NonNull</span>
+<span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">Dialog</span> <span class="nf">onCreateDialog</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">SharedPreferences</span><span class="o">.</span><span class="na">Editor</span> <span class="n">editor</span> <span class="o">=</span> <span class="n">getActivity</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">getSharedPreferences</span><span class="o">(</span><span class="n">RATE_APP</span><span class="o">,</span> <span class="mi">0</span><span class="o">).</span><span class="na">edit</span><span class="o">();</span>
+    <span class="n">LayoutInflater</span> <span class="n">inflater</span> <span class="o">=</span> <span class="n">getActivity</span><span class="o">().</span><span class="na">getLayoutInflater</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="n">View</span> <span class="n">view</span> <span class="o">=</span> <span class="o">(</span><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">rate_app_dialog</span><span class="o">,</span> <span class="kc">null</span><span class="o">));</span>
+    <span class="kd">final</span> <span class="n">RatingBar</span> <span class="n">ratingBar</span> <span class="o">=</span> <span class="o">(</span><span class="n">RatingBar</span><span class="o">)</span><span class="n">view</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">ratingBar</span><span class="o">);</span>
+    <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AlertDialog</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">getActivity</span><span class="o">());</span>
+    <span class="n">String</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Application title&quot;</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">rate_dialog_message</span><span class="o">);</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">setView</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="n">message</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">rate_dialog_title</span><span class="o">,</span> <span class="n">title</span><span class="o">))</span>
+            <span class="o">.</span><span class="na">setIcon</span><span class="o">(</span><span class="n">getActivity</span><span class="o">().</span><span class="na">getApplicationInfo</span><span class="o">().</span><span class="na">icon</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setCancelable</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">setPositiveButton</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">rate_dialog_ok</span><span class="o">),</span> <span class="k">new</span> <span class="n">DialogInterface</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">DialogInterface</span> <span class="n">dialog</span><span class="o">,</span> <span class="kt">int</span> <span class="n">which</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">editor</span><span class="o">.</span><span class="na">putBoolean</span><span class="o">(</span><span class="n">DO_NOT_SHOW_AGAIN_TAG</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                    <span class="n">editor</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">ratingBar</span><span class="o">.</span><span class="na">getRating</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">MIN_RATE_STAR</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">try</span> <span class="o">{</span>
+                            <span class="n">startActivity</span><span class="o">(</span><span class="k">new</span> <span class="nf">Intent</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_VIEW</span><span class="o">,</span>
+                                    <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;market://details?id=&quot;</span> <span class="o">+</span> <span class="n">getActivity</span><span class="o">().</span><span class="na">getPackageName</span><span class="o">())));</span>
+                        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ActivityNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="c1">//No market found</span>
+                            <span class="n">startActivity</span><span class="o">(</span><span class="k">new</span> <span class="nf">Intent</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_VIEW</span><span class="o">,</span>
+                                    <span class="n">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;http://play.google.com/store/apps/details?id=&quot;</span> <span class="o">+</span> <span class="n">getActivity</span><span class="o">().</span><span class="na">getPackageName</span><span class="o">())));</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">sendEmail</span><span class="o">();</span>
+                    <span class="o">}</span>
+                    <span class="n">dialog</span><span class="o">.</span><span class="na">dismiss</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">setNeutralButton</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">rate_dialog_neutral</span><span class="o">),</span> <span class="k">new</span> <span class="n">DialogInterface</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">DialogInterface</span> <span class="n">dialog</span><span class="o">,</span> <span class="kt">int</span> <span class="n">which</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">dialog</span><span class="o">.</span><span class="na">dismiss</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+            <span class="o">.</span><span class="na">setNegativeButton</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">rate_dialog_no</span><span class="o">),</span> <span class="k">new</span> <span class="n">DialogInterface</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">DialogInterface</span> <span class="n">dialog</span><span class="o">,</span> <span class="kt">int</span> <span class="n">which</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">editor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">editor</span><span class="o">.</span><span class="na">putBoolean</span><span class="o">(</span><span class="n">DO_NOT_SHOW_AGAIN_TAG</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                        <span class="n">editor</span><span class="o">.</span><span class="na">apply</span><span class="o">();</span>
+                    <span class="o">}</span>
+                    <span class="n">dialog</span><span class="o">.</span><span class="na">dismiss</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+
+<p>And if the review is bad (less than three start) force the user to send an email to support team.</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendEmail</span><span class="o">(){</span>
+    <span class="kd">final</span> <span class="n">Intent</span> <span class="n">i</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Intent</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">content</span><span class="o">.</span><span class="na">Intent</span><span class="o">.</span><span class="na">ACTION_SEND</span><span class="o">);</span>
+    <span class="n">i</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="s">&quot;message/rfc822&quot;</span><span class="o">);</span>
+    <span class="n">i</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">content</span><span class="o">.</span><span class="na">Intent</span><span class="o">.</span><span class="na">EXTRA_EMAIL</span><span class="o">,</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;test@gmail.com&quot;</span><span class="o">});</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">createChooser</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="s">&quot;Choose email client&quot;</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">content</span><span class="o">.</span><span class="na">ActivityNotFoundException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Toast</span><span class="o">.</span><span class="na">makeText</span><span class="o">(</span><span class="n">getActivity</span><span class="o">(),</span> <span class="s">&quot;No email client was found&quot;</span><span class="o">,</span> <span class="n">Toast</span><span class="o">.</span><span class="na">LENGTH_SHORT</span><span class="o">).</span><span class="na">show</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<p>And the last thing is to not allow the user to rate this app till he chooses a star:</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStart</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onStart</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="n">AlertDialog</span> <span class="n">alertDialog</span> <span class="o">=</span> <span class="o">(</span><span class="n">AlertDialog</span><span class="o">)</span><span class="n">getDialog</span><span class="o">();</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">alertDialog</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Button</span> <span class="n">positiveButton</span> <span class="o">=</span> <span class="n">alertDialog</span><span class="o">.</span><span class="na">getButton</span><span class="o">(</span><span class="n">Dialog</span><span class="o">.</span><span class="na">BUTTON_POSITIVE</span><span class="o">);</span>
+        <span class="n">positiveButton</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="n">RatingBar</span> <span class="n">ratingBar</span> <span class="o">=</span> <span class="o">(</span><span class="n">RatingBar</span><span class="o">)</span><span class="n">alertDialog</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">ratingBar</span><span class="o">);</span>
+        <span class="n">ratingBar</span><span class="o">.</span><span class="na">setOnRatingBarChangeListener</span><span class="o">(</span><span class="k">new</span> <span class="n">RatingBar</span><span class="o">.</span><span class="na">OnRatingBarChangeListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onRatingChanged</span><span class="o">(</span><span class="n">RatingBar</span> <span class="n">ratingBar</span><span class="o">,</span> <span class="kt">float</span> <span class="n">rating</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">rating</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">alertDialog</span><span class="o">.</span><span class="na">getButton</span><span class="o">(</span><span class="n">AlertDialog</span><span class="o">.</span><span class="na">BUTTON_POSITIVE</span><span class="o">).</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">alertDialog</span><span class="o">.</span><span class="na">getButton</span><span class="o">(</span><span class="n">AlertDialog</span><span class="o">.</span><span class="na">BUTTON_POSITIVE</span><span class="o">).</span><span class="na">setEnabled</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
 
   </article>
       <!-- Add Disqus comments. -->
