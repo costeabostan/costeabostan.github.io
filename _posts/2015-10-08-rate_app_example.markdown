@@ -186,3 +186,7 @@ public void onStart()
     }
 }
 {% endhighlight %}
+
+download the full example here:
+
+<a href="https://github.com/costeabostan/androidRateAppDialog">github project</a>
