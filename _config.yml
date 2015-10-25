@@ -4,9 +4,9 @@ email: costea.bostan@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   This site will be used to show andvanced tutorials on Android development.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "http://costeabostan.github.io/" # the base hostname & protocol for your site
 twitter_username: Costea_Bostan
 github_username:  costeabostan
-
+comments: true
 # Build settings
 markdown: kramdown

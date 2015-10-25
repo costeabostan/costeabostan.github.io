@@ -6,22 +6,45 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 24 Oct 2015 23:29:23 +0300</pubDate>
-    <lastBuildDate>Sat, 24 Oct 2015 23:29:23 +0300</lastBuildDate>
+    <pubDate>Sun, 25 Oct 2015 17:09:58 +0200</pubDate>
+    <lastBuildDate>Sun, 25 Oct 2015 17:09:58 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>My first blog</title>
-        <description>&lt;p&gt;I will start to show my Android tutorials here :)&lt;/p&gt;
+        <title>Rate my app dialog box for Android application</title>
+        <description>&lt;p&gt;&lt;b&gt;Why do you need this dialog box ? &lt;/b&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Select&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mDrawable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@DrawableRes&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drawable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-       &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mDrawable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drawable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You will need this popup to remind users of rating your application. The more users are rating your app the more popular your application become. The best possible result is to be in top 25 of your category.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Creating the dialog box&lt;/b&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;First thing is to create a layout file in &lt;i&gt;/res/layout&lt;/i&gt; and name it &lt;i&gt;rate_app_dialog.xml&lt;/i&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;RelativeLayout&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:tools=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:orientation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;vertical&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;RatingBar&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_centerHorizontal=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:stepSize =&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:numStars=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;@+id/ratingBar&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_marginTop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;16dp&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RelativeLayout&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that this layout contains RatingBar element which will be used in the popup dialog.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add the necessary strings for popup in string.xml file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To be continued shortly technical problems…&lt;/p&gt;
 </description>
         <pubDate>Fri, 09 Oct 2015 00:52:39 +0300</pubDate>
         <link>http://yourdomain.com/android/tutorials/2015/10/09/welcome-to-jekyll.html</link>
