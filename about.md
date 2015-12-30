@@ -2,6 +2,7 @@
 layout: page
 title: About me
 permalink: /about/
+type: about
 ---
 <img src="/assets/images/user.png" alt="User" style="width:130px;height:130px;">
 <h3> Overview </h3>
@@ -20,11 +21,8 @@ My name is Bostan Constantin and I'm a Java software developer. I enjoy doing Ja
 * Feb 2013 - March 2014: Worked in a small company and experimented with different Web technologies and frameworks to build web sites for UK clients.  
 
 <h3> My own projects: </h3>
-* This blog of course
-* Text to calendar converter
-<a href="https://play.google.com/store/apps/details?id=crazyapp.texttocalendarconverter">Play Store Link</a>
-* Constitution of Moldova
-<a href="https://play.google.com/store/apps/details?id=md.costea.constitutia">Play Store Link</a>
+* SVG Viewer
+<a href="https://play.google.com/store/apps/details?id=cobos.svgviewer">Play Store Link</a>
 
 <b> Contact:</b>
 <a href="mailto:costea.bostan@gmail.com" target="_top">costea.bostan@gmail.com</a>

@@ -1,23 +1,39 @@
 ---
 layout: default
+type: main
 ---
 
-<div class="home">
+<div>
+    <div class="jumbotron">
+    <h1> <img src="/assets/images/svg_view_icon.png" alt="SVG Viewer" class="img-rounded" height="100" width="100">
+        SVG Viewer</h1>
+    <p class="lead"> Useful application to visualise SVG files. The application has the following features:</p>
+    <ul style="text-align: left;">
+        <li> Possibility to convert opened file to PNG;</li>
+        <li> Works offline;</li>
+        <li> Doesn't use web view (uses native code implementation) therefore it consume less battery;</li>
+        <li> Can open SVG files form file explorer applications;</li>
+        <li> Simple to use, doesn't have adds while visualising SVG file, there is only one banner present at settings popup.</li>
+    </ul>
 
-  <h1 class="page-heading">Posts</h1>
+    <a target="_blank" style="color:white;" href="https://play.google.com/store/apps/details?id=cobos.svgviewer" role="button">
+      <button type="submit" style="background-color:transparent; border-color:transparent;">
+          <img src="/assets/images/play_store.svg" alt="apps" width="200">
+      </button>
+    </a>
+    </div>
+    <div class="row marketing">
+      <div class="col-lg-6">
+        <h4>SVG Converter</h4>
+        <p>This application allow you to convert SVG file to PNG or JPEG and save it on the device.</p>
+        <a target="_blank" class="btn btn-group-sm btn-success" style="color:white;" href="https://play.google.com/store/apps/details?id=cobos.svgtopngconverter" role="button">Download</a>
+      </div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+      <div class="col-lg-6">
+        <h4>Icon Crop App</h4>
+        <p>Useful application to crop Android icons for Play Store upload. The crop icon has the size 512x512 px</p>
+        <a target="_blank" class="btn btn-group-sm btn-success" style="color:white;" href="https://play.google.com/store/apps/details?id=cobos.iconcropapp" role="button">Download</a>
+      </div>
+    </div>
 
 </div>

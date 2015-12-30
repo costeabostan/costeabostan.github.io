@@ -1,8 +1,7 @@
 # Site settings
-title: Costea's Blog about Java development
+title: Android Aplications
 email: costea.bostan@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  This site will be used to show andvanced tutorials on Android development.
+description: This web site contains my Android applications and blog.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://costeabostan.github.io/" # the base hostname & protocol for your site
 twitter_username: Costea_Bostan

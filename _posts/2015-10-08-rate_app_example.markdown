@@ -3,6 +3,7 @@ layout: post
 title:  "Rate my app dialog box for Android application"
 date:   2015-10-08 21:52:39
 categories: Android tutorials
+type: blog
 ---
 
 <b>Why do you need this dialog box ? </b>
