@@ -4,10 +4,10 @@
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
- <meta name="description" content="SVG Viewer made by Bostan Constantin">
+ <meta name="description" content="Applications made by Bostan Constantin">
  <meta name="author" content="Bostan Constantin">
  <link rel="shortcut icon" href="/assets/img/pumpkin.png">
- <title>SVG Viewer App</title>
+ <title>Bostan Constantin Apps</title>
 
  <!-- Bootstrap core CSS -->
  <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -24,30 +24,30 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 			<![endif]-->
 		</head>
-      <body>
-          <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-               <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                     <span class="sr-only">Toggle navigation</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                 </button>
-                 <a class="navbar-brand" href="#topWrap">
-                     <span class="fa-stack fa-lg">
-                        <img class="bottom" src="/assets/svg/pumpkin.svg" alt="pumpkin">
-                    </span>
-                    <span class="title">Pumpkin Apps</span>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse appiNav">
-              <ul class="nav navbar-nav">
-                 <li><a href="#topWrap">Top applications</a></li>
-                 <li><a href="#aboutMeWrap">About me</a></li>
-             </ul>
-         </div>
+    <body>
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="#topWrap">
+           <span class="fa-stack fa-lg">
+            <img class="bottom" src="/assets/svg/pumpkin.svg" alt="pumpkin">
+          </span>
+          <span class="title">Pumpkin Apps</span>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse appiNav">
+        <ul class="nav navbar-nav">
+         <li><a href="#topWrap">Top applications</a></li>
+         <li><a href="#aboutMeWrap">About me</a></li>
+       </ul>
      </div>
+   </div>
  </div>
 
  <div id="topWrap" class="jumbotron">
@@ -67,11 +67,17 @@
                 <div class="row">
                   <div class="col-md-8 col-md-offset-3">
                    <div class="col-md-4" style="margin-top: 20px;">
-                     <img class="center-block" src="/assets/images/svg_viewer.png" style="width: 230px;">
+                     <img class="center-block" src="/assets/images/svg_viewer.png">
                    </div> 
                    <div class="col-md-6" style="text-align: left;">
                     <h1>SVG Viewer</h1>
-                    <h2>Useful application to view SVG files.</h2>
+                    <h2>Useful application to view SVG files.
+                    
+                    <a style="color: #FFFFFF;" class="moreInfo" target="_blank" href="/svg_viewer/">
+                     <b>More...</b>         
+                    </a>
+
+                    </h2>
                     <a  target="_blank" href="https://play.google.com/store/apps/details?id=cobos.svgviewer">
                       <img class="bottom" src="/assets/img/google-play-badge.png" width="60px" alt="play_store" style="width: 230px;">          
                     </a>
@@ -83,7 +89,7 @@
                 <div class="row">
                   <div class="col-md-8 col-md-offset-3">
                    <div class="col-md-4" style="margin-top: 20px;">
-                     <img class="center-block" src="/assets/images/svg_converter.png" style="width: 230px;">
+                     <img class="center-block" src="/assets/images/svg_converter.png" >
                    </div> 
                    <div class="col-md-6" style="text-align: left;">
                     <h1>SVG Converter</h1>
@@ -100,7 +106,7 @@
                 <div class="row">
                   <div class="col-md-8 col-md-offset-3">
                    <div class="col-md-4" style="margin-top: 20px;">
-                     <img class="center-block" src="/assets/images/crop.png" style="width: 230px;">
+                     <img class="center-block" src="/assets/images/crop.png">
                    </div> 
                    <div class="col-md-6" style="text-align: left;">
                     <h1>Multiple Photo Crop</h1>
@@ -198,16 +204,16 @@
   <div class="container">
 
     <div class="row">
-        <div class="col-xs-12 text-center">
-           <p>Support: costea.bostan@gmail.com</p>
-       </div>
+      <div class="col-xs-12 text-center">
+       <p>Support: costea.bostan@gmail.com</p>
+     </div>
    </div>
 
    <div class="row">
     <div class="col-xs-12 text-center">
-       <p>Copyright &copy; 2016 Pumpkin Apps. All Rights Reserved</p>
+     <p>Copyright &copy; 2016 Pumpkin Apps. All Rights Reserved</p>
    </div>
-</div>
+ </div>
 </div>
 </footer>
 
@@ -220,76 +226,76 @@
             <script src="/js/flexslider.js"></script>
 
             <script type="text/javascript">
-                $(document).ready(function() {
+              $(document).ready(function() {
 
-                   $('.mobileSlider').flexslider({
-                      animation: "slide",
-                      slideshowSpeed: 3000,
-                      controlNav: false,
-                      directionNav: true,
-                      prevText: "&#171;",
-                      nextText: "&#187;"
-                  });
-                   $('.flexslider').flexslider({
-                      animation: "slide",
-                      directionNav: false
-                  });
+               $('.mobileSlider').flexslider({
+                animation: "slide",
+                slideshowSpeed: 3000,
+                controlNav: false,
+                directionNav: true,
+                prevText: "&#171;",
+                nextText: "&#187;"
+              });
+               $('.flexslider').flexslider({
+                animation: "slide",
+                directionNav: false
+              });
 
-                   $('a[href*=#]:not([href=#])').click(function() {
-                      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
-                         var target = $(this.hash);
-                         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                         if ($(window).width() < 768) {
-                            if (target.length) {
-                               $('html,body').animate({
-                                  scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
-                              }, 1000);
-                               return false;
-                           }
-                       }
-                       else {
-                        if (target.length) {
-                           $('html,body').animate({
-                              scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
-                          }, 1000);
-                           return false;
-                       }
-                   }
-
+               $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
+                 var target = $(this.hash);
+                 target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                 if ($(window).width() < 768) {
+                  if (target.length) {
+                   $('html,body').animate({
+                    scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
+                  }, 1000);
+                   return false;
+                 }
                }
+               else {
+                if (target.length) {
+                 $('html,body').animate({
+                  scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
+                }, 1000);
+                 return false;
+               }
+             }
+
+           }
+         });
+
+               $('#toTop').click(function() {
+                $('html,body').animate({
+                 scrollTop: 0
+               }, 1000);
+              });
+
+               var timer;
+               $(window).bind('scroll',function () {
+                clearTimeout(timer);
+                timer = setTimeout( refresh , 50 );
+              });
+               var refresh = function () {
+                if ($(window).scrollTop()>100) {
+                 $(".tagline").fadeTo( "slow", 0 );
+               }
+               else {
+                 $(".tagline").fadeTo( "slow", 1 );
+               }
+             };
+
            });
 
-                   $('#toTop').click(function() {
-                      $('html,body').animate({
-                         scrollTop: 0
-                     }, 1000);
-                  });
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                   var timer;
-                   $(window).bind('scroll',function () {
-                    clearTimeout(timer);
-                    timer = setTimeout( refresh , 50 );
-                });
-                   var refresh = function () {
-                      if ($(window).scrollTop()>100) {
-                         $(".tagline").fadeTo( "slow", 0 );
-                     }
-                     else {
-                         $(".tagline").fadeTo( "slow", 1 );
-                     }
-                 };
+              ga('create', 'UA-58694546-2', 'auto');
+              ga('send', 'pageview');
 
-             });
+            </script>
 
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-58694546-2', 'auto');
-            ga('send', 'pageview');
-
-         </script>
-
-     </body>
-     </html>
+          </body>
+          </html>

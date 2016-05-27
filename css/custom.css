@@ -380,6 +380,35 @@ h3.sectionTitle {
 	color: #000000;
 }
 
+.moreInfo a:link {
+    text-decoration: none;
+    background-color: #FFFFFF;
+}
+
+.moreInfo a:visited {
+    text-decoration: none;
+    background-color: #FFFFFF!important;
+    color: #FFFFFF!important;
+}
+
+.moreInfo a:hover {
+    text-decoration: none;
+    background-color: #FFFFFF!important;
+    color: #FFFFFF!important;
+}
+
+.moreInfo a:active {
+    text-decoration: none;
+    background-color: #FFFFFF!important;
+    color: #FFFFFF!important;
+}
+
+.moreInfo a {
+    text-decoration: none;
+    background-color: #FFFFFF!important;
+    color: #FFFFFF!important;
+}
+
 /**********************************************************************/
 /************************ TESTIMONIALS *******************************/
 /********************************************************************/
